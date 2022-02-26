@@ -4,20 +4,29 @@
 //64050108 ธนวัฒน์ เขียวขจี
 
 //HEllo
-public class LibraryBook extends Book {
-    private boolean availForBowrow;
+public class LibraryBook {
+    private boolean availForBorrow ;
+    public LibraryBook(){}
 
-    public boolean isAvailable(Library b) {
-        
-        return availForBowrow;
+    Library library = new Library();
+    public boolean isAvailable(Book b) {
+        if( b instanceof Library && !((library.getBorrowHM()).containsKey(b.title))){
+            setBookAvailableTrue();
+        }else{
+            setBookAvailableFalse();
+        }
+        return availForBorrow;
     }
 
     public boolean setBookAvailableFalse() {
-        return this.availForBowrow = false;
+        return this.availForBorrow = false;
     }
 
     public boolean setBookAvailableTrue() {
-        return this.availForBowrow = true;
+        return this.availForBorrow = true;
+    }
+    public boolean getavailForBorrow(){
+        return availForBorrow;
     }
 
 
