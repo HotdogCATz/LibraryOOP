@@ -35,7 +35,7 @@ public class LibraryBook extends Book {
     public boolean setBookAvailableTrue() {
         return this.availForBorrow = true;
     }
-    public boolean getavailForBorrow(){
+    public boolean isAvailable(){
         return availForBorrow;
     }
 

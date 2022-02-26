@@ -106,8 +106,8 @@ public class Library implements BorrowAble {
         // check ว่าเป็นหนังสือ LibraryBook ที่สามารถยืมได้
         if (b instanceof LibraryBook) {
             LibraryBook lb = (LibraryBook) b;
-            if (lb.getavailForBorrow()) {
-                System.out.println("borrow Book name: " + b.title + " Status Now: "+lb.getavailForBorrow());
+            if (lb.isAvailable()) {
+                System.out.println("borrow Book name: " + b.title + " Status Now: "+lb.isAvailable());
                 lb.setBookAvailableFalse();
                 // add Hashmap
                 borrowHM.put(b.title, LocalDate.of(yy, mm, dd));
