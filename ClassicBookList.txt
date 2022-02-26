@@ -1,0 +1,3 @@
+9780142410318,"Charlie and the Chocolate Factory","Roald Dahl","Viking Books",2007,192
+9780241444313,"The Little Prince","Antoine de Saint-Exupér","puffin",2022,144
+9780451526342,"Animal Farm","George Orwell","Signet",2004,140
