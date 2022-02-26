@@ -9,13 +9,9 @@ import java.util.HashMap;
 
 public class Library implements BorrowAble {
 
-    private HashMap<String, LocalDate> borrowHM() {
-        return null;
-    }
+    private HashMap<String, LocalDate> borrowHM = new HashMap<>();
 
-    public ArrayList<Book> allBooks() {
-        return null;
-    }
+    public ArrayList<Book> allBooks = new ArrayList<>();
 
     // Interface
 
@@ -25,7 +21,7 @@ public class Library implements BorrowAble {
     public boolean checkOut(Book b, int yy, int mm, int dd) { // การนับจำนวนวันใช้ int d = (int)LocalDateObj1.until(LocalDateObj2,ChronoUnit.DAYS);
         if(((LibraryBook) b).isAvailable((Library) b)){
             date = LocalDate.of(yy, mm, dd);
-            borrowHM().put(b.isbn, date);
+            borrowHM.put(b.isbn, date);
             return true;
         }
         return false;
@@ -36,7 +32,7 @@ public class Library implements BorrowAble {
     public int returnitem(Book b, int yy, int mm, int dd) {
         LocalDate returnDate = LocalDate.of(yy, mm, dd);
         int sumDate = (int)date.until(returnDate, ChronoUnit.DAYS);
-        borrowHM().remove(b.isbn);
+        borrowHM.remove(b.isbn);
         return sumDate;
     }
 }
