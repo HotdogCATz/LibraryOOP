@@ -1,6 +1,7 @@
 
-//64050231 วุฒิชัย ปัดไธสง /////
+//64050231 วุฒิชัย ปัดไธสง
 //64050229 วิศว์ ศิริวัฒน์
+//64050108 ธนวัฒน์ เขียวขจี
 
 public class Book extends Library {
     protected String isbn; // search book isbn; it's unique code number of book
