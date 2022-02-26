@@ -7,16 +7,18 @@
 public class LibraryBook extends Book {
     private boolean availForBowrow;
 
-    private boolean isAvailable() {
-
+    public boolean isAvailable(Library b) {
+        
         return availForBowrow;
     }
 
     public boolean setBookAvailableFalse() {
-        return availForBowrow = false;
+        return this.availForBowrow = false;
     }
 
     public boolean setBookAvailableTrue() {
-        return availForBowrow = true;
+        return this.availForBowrow = true;
     }
+
+
 }

@@ -3,6 +3,7 @@
 //64050229 วิศว์ ศิริวัฒน์
 //64050108 ธนวัฒน์ เขียวขจี
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ public class Library implements BorrowAble {
         return null;
     }
 
-    private ArrayList<Book> allBooks() {
+    public ArrayList<Book> allBooks() {
         return null;
     }
 
@@ -21,13 +22,21 @@ public class Library implements BorrowAble {
     LocalDate date;
 
     @Override
-    public boolean checkOut(Book b, int yy, int mm, int dd) { // การนับจำนวนวันใช้ int d
-                                                              // =(int)LocalDateObj1.until(LocalDateObj2,ChronoUnit.DAYS);
-        return true;
+    public boolean checkOut(Book b, int yy, int mm, int dd) { // การนับจำนวนวันใช้ int d = (int)LocalDateObj1.until(LocalDateObj2,ChronoUnit.DAYS);
+        if(((LibraryBook) b).isAvailable((Library) b)){
+            date = LocalDate.of(yy, mm, dd);
+            borrowHM().put(b.isbn, date);
+            return true;
+        }
+        return false;
+        
     }
 
     @Override
     public int returnitem(Book b, int yy, int mm, int dd) {
-        return 5;
+        LocalDate returnDate = LocalDate.of(yy, mm, dd);
+        int sumDate = (int)date.until(returnDate, ChronoUnit.DAYS);
+        borrowHM().remove(b.isbn);
+        return sumDate;
     }
 }
