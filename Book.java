@@ -30,8 +30,8 @@ public class Book extends Library {
 
     @Override
     public String toString() {
-        return "Token: " + isbn + "Title: " + title + "Author: " + author + "Publisher: " + publisher
-                + "numberOFPages: " + numberOFPages + "Year:"
+        return "Token: " + isbn + " Title: " + title + " Author: " + author + " Publisher: " + publisher
+                + " numberOFPages: " + numberOFPages + " Year:"
                 + year;
     }
 

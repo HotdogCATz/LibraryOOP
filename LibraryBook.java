@@ -3,20 +3,18 @@
 //64050229 วิศว์ ศิริวัฒน์
 //64050108 ธนวัฒน์ เขียวขจี
 
-//HEllo
 public class LibraryBook extends Book {
     private boolean availForBowrow;
 
-    private boolean isAvailable() {
-
+    public boolean isAvailable() {
         return availForBowrow;
     }
 
-    public boolean setBookAvailableFalse() {
-        return availForBowrow = false;
+    public void setBookAvailableFalse() {
+        availForBowrow = false;
     }
 
-    public boolean setBookAvailableTrue() {
-        return availForBowrow = true;
+    public void setBookAvailableTrue() {
+        availForBowrow = true;
     }
 }
