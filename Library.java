@@ -13,33 +13,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Library extends Book implements BorrowAble {
+public class Library implements BorrowAble {
 
     private HashMap<String, LocalDate> borrowHM = new HashMap<>();
     private ArrayList<Book> allBooks = new ArrayList<>();
-    private Book book = new Book();
-    // constructor
-    public Library() {
-    } // default constructor
-    // isbn String input
-    public Library(String isbn, String title, String author, String publisher, int year, int numberOfPages) {
-        book.isbn = isbn;
-        book.title = title;
-        book.author = author;
-        book.publisher = publisher;
-        book.year = year;
-        book.numberOfPages = numberOfPages;
-    }
-    // isbn int input
-    public Library(int isbn, String title, String author, String publisher, int year, int numberOfPages) {
-        // Convert isbn to string
-        book.isbn = String.valueOf(isbn);
-        book.title = title;
-        book.author = author;
-        book.publisher = publisher;
-        book.year = year;
-        book.numberOfPages = numberOfPages;
-    }
+    
 
     //Library library = new Library();
     public void BufferedReader() {
@@ -50,7 +28,7 @@ public class Library extends Book implements BorrowAble {
             while ((line = s.readLine()) != null) {
                 String[] book = line.replaceAll("\"", "").split(",");
                 // Add Book to Library
-                Library bookList = new Library(book[0], book[1], book[2], book[3], Integer.parseInt(book[4]),
+                LibraryBook bookList = new LibraryBook(book[0], book[1], book[2], book[3], Integer.parseInt(book[4]),
                         Integer.parseInt(book[5]));
                 //library.addBook(bookList);
                 allBooks.add(bookList);
@@ -83,12 +61,6 @@ public class Library extends Book implements BorrowAble {
         return this.borrowHM;
     }
 
-    public boolean getStatus(Book b) {
-        // Return true if the book is available, false otherwise
-        LibraryBook libraryBook = new LibraryBook();
-        return libraryBook.isAvailable(b);
-    }
-
     public Book getBookByIndex(int i) {
         return allBooks.get(i);
     }
@@ -103,7 +75,7 @@ public class Library extends Book implements BorrowAble {
             if (b instanceof LibraryArchive) {
                 System.out.println("Archive Resource : " + b.title);
             } else {
-                System.out.println(b.title + ", borrow status is : " + getStatus(b));
+                System.out.println(b.title);
             }
         }
         System.out.println("\u001B[32m-------------------------------\u001B[0m");
@@ -135,10 +107,12 @@ public class Library extends Book implements BorrowAble {
         if (b instanceof LibraryBook) {
             LibraryBook lb = (LibraryBook) b;
             if (lb.getavailForBorrow()) {
-                System.out.println("borrow Book name: " + b.title);
+                System.out.println("borrow Book name: " + b.title + " Status Now: "+lb.getavailForBorrow());
                 lb.setBookAvailableFalse();
                 // add Hashmap
                 borrowHM.put(b.title, LocalDate.of(yy, mm, dd));
+            }else{
+                System.out.println("same book: "+b.title);
             }
             return true;
         } else {
@@ -150,18 +124,28 @@ public class Library extends Book implements BorrowAble {
 
     @Override
     public int returnitem(Book b, int yy, int mm, int dd) {
+        boolean sertBook = false;
         System.out.println("\u001B[32m-----------return the book-----------\u001B[0m");
         LibraryBook lb = (LibraryBook) b;
         int d = 0;
         // check มีหนังสือให้คืนไหม
         if (borrowHM != null) {
-            // คำนวณจำวันที่ยืม
-            d = (int) borrowHM.get(b.title).until(LocalDate.of(yy, mm, dd), ChronoUnit.DAYS);
-            lb.setBookAvailableTrue();
-            System.out.println("returm this Book: " + b.title);
-            borrowHM.remove(b.title);
+            for(String key : borrowHM.keySet()){
+                if(key == b.title){
+                    sertBook = true;
+                }
+            }
+            if(sertBook){
+                // คำนวณจำวันที่ยืม
+                d = (int) borrowHM.get(b.title).until(LocalDate.of(yy, mm, dd), ChronoUnit.DAYS);
+                lb.setBookAvailableTrue();
+                System.out.println("returm this Book: " + b.title);
+                borrowHM.remove(b.title);
+            }else{
+                System.out.println("dont have borrow this Book: " + lb.title);
+            }
         } else {
-            System.out.println("dont have borrow this Book: " + lb.title);
+            System.out.println("emtry");
         }
         return d;
     }

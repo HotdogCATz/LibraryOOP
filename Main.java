@@ -10,11 +10,11 @@ public class Main {
 
         //Print test
         library.printCatalog();
-        
         library.checkOut(library.getBookByIndex(0), 2022, 5, 23);
-        System.out.println("Bruh");
+        library.checkOut(library.getBookByIndex(0), 2022, 5, 23);
+        System.out.println("Day: "+library.returnitem(library.getBookByIndex(0), 2022, 6, 10));
+        System.out.println("Day: "+library.returnitem(library.getBookByIndex(1), 2022, 6, 10));
         library.printCatalog();
         library.printBorrowMap();
-       
     }
 }

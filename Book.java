@@ -15,6 +15,24 @@ public class Book  {
     //default constructor
     public Book(){}
 
+    public Book(String isbn, String title, String author, String publisher, int year, int numberOfPages) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.year = year;
+        this.numberOfPages = numberOfPages;
+    }
+    // isbn int input
+    public Book(int isbn, String title, String author, String publisher, int year, int numberOfPages) {
+        // Convert isbn to string
+        this.isbn = String.valueOf(isbn);
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.year = year;
+        this.numberOfPages = numberOfPages;
+    }
 
     public void turnPageForward() {
         currentPageNumber += 1;
@@ -40,7 +58,6 @@ public class Book  {
 
 
     // public boolean getStatus() {
-    //     // Return true if the book is available, false otherwise
     //     if (bookIs)
     //     return b.isAvailable();
     // }
