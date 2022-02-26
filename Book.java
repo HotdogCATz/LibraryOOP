@@ -3,14 +3,18 @@
 //64050229 วิศว์ ศิริวัฒน์
 //64050108 ธนวัฒน์ เขียวขจี
 
-public class Book extends Library {
-    protected String isbn; // search book isbn; it's unique code number of book
+public class Book  {
+    protected String isbn; // unique code number of book
     protected String title; // Name Book
     protected String author;
     protected String publisher;
     protected int year;
-    protected int numberOFPages;
+    protected int numberOfPages;
     private int currentPageNumber;
+    
+    //default constructor
+    public Book(){}
+
 
     public void turnPageForward() {
         currentPageNumber += 1;
@@ -30,9 +34,15 @@ public class Book extends Library {
 
     @Override
     public String toString() {
-        return "Token: " + isbn + "Title: " + title + "Author: " + author + "Publisher: " + publisher
-                + "numberOFPages: " + numberOFPages + "Year:"
-                + year;
+        return "Token: " + isbn + "\nTitle: " + title + "\nAuthor: " + author + "\nPublisher: " + publisher
+                + "\nnumberOFPages: " + numberOfPages + "\nYear: " + year;
     }
+
+
+    // public boolean getStatus() {
+    //     // Return true if the book is available, false otherwise
+    //     if (bookIs)
+    //     return b.isAvailable();
+    // }
 
 }
